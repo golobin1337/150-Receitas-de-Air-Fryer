@@ -20,6 +20,26 @@ document.querySelectorAll('.carousel-nav').forEach(function (nav) {
   });
 });
 
+// ---- Curtir nas avaliações ----
+document.querySelectorAll('.rv-foot').forEach(function (foot) {
+  var like = foot.querySelector('span');
+  if (!like) return;
+  like.classList.add('like-btn');
+  like.setAttribute('role', 'button');
+  like.setAttribute('tabindex', '0');
+  like.textContent = '🔥 Curtir';
+  var liked = false;
+  function toggle() {
+    liked = !liked;
+    like.classList.toggle('liked', liked);
+    like.textContent = liked ? '🔥 Curtiu' : '🔥 Curtir';
+  }
+  like.addEventListener('click', toggle);
+  like.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+  });
+});
+
 // ---- Upsell popup (escolha entre Completo com desconto e Básico) ----
 var upsell = document.getElementById('upsell');
 var upsellClose = document.getElementById('upsellClose');
@@ -90,15 +110,24 @@ if (lightbox) {
 }
 
 // make every image inside the two carousels zoomable, add hint + drag cue
-document.querySelectorAll('.preview-item .placeholder, .preview-item img, .result-item .placeholder, .result-item img').forEach(function (img) {
-  img.classList.add('zoomable');
-  if (!img.querySelector('.zoom-hint')) {
+document.querySelectorAll('.preview-item .placeholder, .preview-item img, .result-item .placeholder, .result-item img').forEach(function (el) {
+  var target = el;
+  // <img> can't hold children, so wrap it to host the hint overlay
+  if (el.tagName === 'IMG') {
+    var wrap = document.createElement('div');
+    wrap.className = 'zoom-wrap';
+    el.parentNode.insertBefore(wrap, el);
+    wrap.appendChild(el);
+    target = wrap;
+  }
+  target.classList.add('zoomable');
+  if (!target.querySelector('.zoom-hint')) {
     var hint = document.createElement('span');
     hint.className = 'zoom-hint';
     hint.textContent = '🔍 Toque para ampliar';
-    img.appendChild(hint);
+    target.appendChild(hint);
   }
-  img.addEventListener('click', function () { openLightbox(img); });
+  target.addEventListener('click', function () { openLightbox(target); });
 });
 
 // add "ARRASTE PARA VER MAIS" under each carousel that has zoomable items
