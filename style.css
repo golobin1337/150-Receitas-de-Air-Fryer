@@ -292,12 +292,15 @@ section{padding-block:34px}
 .rv-stars{color:var(--star);font-size:11px;letter-spacing:1px}
 .rv-text{font-size:11px;color:var(--ink-soft);line-height:1.45;margin:0}
 .ph-rv-food{aspect-ratio:4/3;border-radius:8px;width:100%;object-fit:cover;display:block}
-.rv-foot{display:flex;gap:14px;font-size:10px;color:var(--muted);font-weight:600}
-.rv-foot .like-btn{cursor:pointer;user-select:none;transition:color .15s,transform .1s;outline:none}
-.rv-foot .like-btn:hover{color:var(--ink-soft)}
-.rv-foot .like-btn:active{transform:scale(.92)}
-.rv-foot .like-btn.liked{color:var(--orange);font-weight:800}
-.rv-foot .like-btn:focus-visible{text-decoration:underline}
+.rv-foot{display:flex;gap:8px;font-size:11px;color:var(--ink-soft);font-weight:700;margin-top:2px}
+.rv-foot span{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border:1px solid var(--hairline);
+  border-radius:20px;background:#fff;line-height:1}
+.rv-foot span b{font-weight:800}
+.rv-foot .like-btn{cursor:pointer;user-select:none;transition:color .15s,background .15s,border-color .15s,transform .1s;outline:none}
+.rv-foot .like-btn:hover{background:#faf4ec}
+.rv-foot .like-btn:active{transform:scale(.94)}
+.rv-foot .like-btn.liked{color:var(--orange);border-color:var(--orange);background:var(--orange-soft)}
+.rv-foot .like-btn:focus-visible{border-color:var(--orange)}
 
 /* faq */
 .faq-head{text-align:center;font-size:19px;font-weight:900;margin:0 0 22px;letter-spacing:.3px}

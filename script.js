@@ -21,19 +21,25 @@ document.querySelectorAll('.carousel-nav').forEach(function (nav) {
 });
 
 // ---- Curtir nas avaliações ----
-document.querySelectorAll('.rv-foot').forEach(function (foot) {
+var likeBases = [78, 112, 64, 93, 57, 86];
+document.querySelectorAll('.rv-foot').forEach(function (foot, i) {
   var like = foot.querySelector('span');
   if (!like) return;
+  var base = likeBases[i % likeBases.length];
+  var liked = false;
   like.classList.add('like-btn');
   like.setAttribute('role', 'button');
   like.setAttribute('tabindex', '0');
-  like.textContent = '👍 Curtir';
-  var liked = false;
+  function render() {
+    like.innerHTML = '👍 ' + (liked ? 'Curtiu' : 'Curtir') +
+      ' <b>' + (liked ? base + 1 : base) + '</b>';
+  }
   function toggle() {
     liked = !liked;
     like.classList.toggle('liked', liked);
-    like.textContent = liked ? '👍 Curtiu' : '👍 Curtir';
+    render();
   }
+  render();
   like.addEventListener('click', toggle);
   like.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
