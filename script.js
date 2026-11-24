@@ -90,7 +90,7 @@ if (lightbox) {
 }
 
 // make every image inside the two carousels zoomable, add hint + drag cue
-document.querySelectorAll('.preview-item .placeholder, .result-item .placeholder').forEach(function (img) {
+document.querySelectorAll('.preview-item .placeholder, .preview-item img, .result-item .placeholder, .result-item img').forEach(function (img) {
   img.classList.add('zoomable');
   if (!img.querySelector('.zoom-hint')) {
     var hint = document.createElement('span');

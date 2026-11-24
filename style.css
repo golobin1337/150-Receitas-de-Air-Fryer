@@ -50,6 +50,7 @@ section{padding-block:34px}
   border:1.5px dashed #b9bfc6;border-radius:var(--radius);color:#79818a;font-size:11px;
   font-weight:700;letter-spacing:.4px;padding:14px}
 .ph-mockup{aspect-ratio:4/3;margin:0 auto 20px;max-width:300px;box-shadow:var(--shadow)}
+.hero-img{display:block;width:100%;margin:0 auto 20px;border-radius:18px;box-shadow:0 12px 30px rgba(58,39,27,.14)}
 
 .price-block{margin:4px 0 16px}
 .price-old{color:var(--price-old);text-decoration:line-through;font-weight:700;font-size:16px}
@@ -116,6 +117,7 @@ section{padding-block:34px}
 .result-item{flex:0 0 62%;scroll-snap-align:center;display:flex;flex-direction:column;gap:10px}
 .result-item .placeholder{aspect-ratio:1;box-shadow:var(--shadow)}
 .result-item p{margin:0;font-size:11px;color:var(--ink-soft);line-height:1.45;font-style:italic}
+.wa-print{width:100%;border-radius:14px;box-shadow:var(--shadow);display:block}
 .section-note{text-align:center;font-size:10.5px;color:var(--muted);font-style:italic;margin:14px 0 0}
 
 /* zoom hint on carousel images */
@@ -280,7 +282,7 @@ section{padding-block:34px}
 .rv-date{font-size:9.5px;color:var(--muted)}
 .rv-stars{color:var(--star);font-size:11px;letter-spacing:1px}
 .rv-text{font-size:11px;color:var(--ink-soft);line-height:1.45;margin:0}
-.ph-rv-food{aspect-ratio:4/3;border-radius:8px}
+.ph-rv-food{aspect-ratio:4/3;border-radius:8px;width:100%;object-fit:cover;display:block}
 .rv-foot{display:flex;gap:14px;font-size:10px;color:var(--muted);font-weight:600}
 
 /* faq */
