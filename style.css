@@ -1,7 +1,7 @@
 /* Layout: centered single-column mobile sales page over a neutral page ground.
    Palette: brand green + warm orange accents on white; committed single (light) theme. */
 :root{
-  --page-bg:#fff2e4;
+  --page-bg:#fffaf4;
   --col-bg:#fffaf4;
   --red:#ef7b1e;
   --navy:#3a271b;
@@ -60,13 +60,13 @@ section{padding-block:34px}
 .price-card{background:#fff;border:1px solid var(--hairline);border-radius:20px;box-shadow:0 10px 30px rgba(27,33,65,.08);
   padding:26px 22px;max-width:380px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
 .price-card .price-block{margin:0 0 18px}
-.price-card .cta{box-shadow:0 10px 22px rgba(30,145,80,.3)}
+.price-card .cta{box-shadow:0 10px 22px rgba(242,121,43,.3)}
 .price-card .trust{margin-top:16px}
 
 /* CTA */
 .cta{display:block;width:100%;max-width:360px;margin:0 auto;background:linear-gradient(180deg,#f78a33,var(--green-dark));color:#fff;border:none;
   border-radius:40px;padding:16px 20px;font-size:15px;font-weight:900;letter-spacing:.4px;text-align:center;
-  text-decoration:none;cursor:pointer;box-shadow:0 8px 18px rgba(46,168,79,.35);text-transform:uppercase}
+  text-decoration:none;cursor:pointer;box-shadow:0 8px 18px rgba(242,121,43,.35);text-transform:uppercase}
 .cta:hover{background:linear-gradient(180deg,#f17f26,#d85f14)}
 .cta{animation:ctaPulse 2s ease-in-out infinite}
 @keyframes ctaPulse{
