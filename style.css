@@ -112,6 +112,7 @@ section{padding-block:34px}
 /* preview card (recipe previews with caption) */
 .preview-item{flex:0 0 62%;scroll-snap-align:center;display:flex;flex-direction:column;gap:10px}
 .preview-item .placeholder{aspect-ratio:9/13;box-shadow:var(--shadow)}
+.preview-item img{width:100%;border-radius:12px;box-shadow:var(--shadow);display:block}
 .preview-item h4{margin:0;font-size:12.5px;font-weight:800;color:var(--ink)}
 .preview-item p{margin:0;font-size:11px;color:var(--ink-soft);line-height:1.4}
 .preview-item .cap{font-size:9.5px;color:var(--muted);font-style:italic}

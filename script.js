@@ -27,12 +27,12 @@ document.querySelectorAll('.rv-foot').forEach(function (foot) {
   like.classList.add('like-btn');
   like.setAttribute('role', 'button');
   like.setAttribute('tabindex', '0');
-  like.textContent = '🔥 Curtir';
+  like.textContent = '👍 Curtir';
   var liked = false;
   function toggle() {
     liked = !liked;
     like.classList.toggle('liked', liked);
-    like.textContent = liked ? '🔥 Curtiu' : '🔥 Curtir';
+    like.textContent = liked ? '👍 Curtiu' : '👍 Curtir';
   }
   like.addEventListener('click', toggle);
   like.addEventListener('keydown', function (e) {
