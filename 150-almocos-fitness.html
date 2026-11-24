@@ -1,0 +1,497 @@
+<title>150 Almoços Fitness</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* Layout: centered single-column mobile sales page over a neutral page ground.
+     Palette: brand green + warm orange accents on white; committed single (light) theme. */
+  :root{
+    --page-bg:#e9eaec;
+    --col-bg:#ffffff;
+    --green:#2ea84f;
+    --green-dark:#1f8c3f;
+    --green-deep:#0f6b2e;
+    --green-soft:#eafaef;
+    --green-line:#bfe9ca;
+    --orange:#f08c1e;
+    --orange-soft:#fde7cf;
+    --ink:#2b2f33;
+    --ink-soft:#5b6268;
+    --muted:#8b9299;
+    --hairline:#e7e9ec;
+    --card:#ffffff;
+    --dark-bg:#161616;
+    --dark-fg:#efefef;
+    --dark-soft:#b9b9b9;
+    --price-old:#d64545;
+    --star:#f6b21b;
+    --radius:14px;
+    --shadow:0 6px 20px rgba(0,0,0,.07);
+    color-scheme:light;
+    --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--page-bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+
+  .page{max-width:460px;margin:0 auto;background:var(--col-bg);min-height:100vh;overflow:hidden}
+  .wrap{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+  section{padding-block:34px}
+
+  /* top bar */
+  .topbar{background:var(--orange);color:#fff;text-align:center;font-weight:800;font-size:12.5px;letter-spacing:.3px;padding:9px 16px}
+
+  /* hero */
+  .hero{text-align:center;padding-top:26px}
+  .hero h1{font-size:23px;line-height:1.2;font-weight:900;margin:0 0 12px;color:var(--green-deep);text-wrap:balance}
+  .hero .sub{font-size:15px;font-weight:700;color:var(--ink);margin:0 0 10px;text-wrap:balance}
+  .hero .lead{font-size:13px;color:var(--ink-soft);margin:0 auto 20px;max-width:34ch}
+
+  .placeholder{display:flex;align-items:center;justify-content:center;text-align:center;
+    background:repeating-linear-gradient(45deg,#f2f3f5,#f2f3f5 10px,#ececee 10px,#ececee 20px);
+    border:1.5px dashed #b9bfc6;border-radius:var(--radius);color:#79818a;font-size:11px;
+    font-weight:700;letter-spacing:.4px;padding:14px}
+  .ph-mockup{aspect-ratio:4/3;margin:0 auto 20px;max-width:300px;box-shadow:var(--shadow)}
+
+  .price-block{margin:4px 0 16px}
+  .price-old{color:var(--price-old);text-decoration:line-through;font-weight:700;font-size:14px}
+  .price-label{font-size:12px;color:var(--ink-soft);letter-spacing:1px;font-weight:700;margin-top:2px}
+  .price-now{font-size:40px;font-weight:900;color:var(--green-deep);line-height:1.1}
+
+  /* CTA */
+  .cta{display:block;width:100%;max-width:360px;margin:0 auto;background:var(--green);color:#fff;border:none;
+    border-radius:40px;padding:16px 20px;font-size:15px;font-weight:900;letter-spacing:.4px;text-align:center;
+    text-decoration:none;cursor:pointer;box-shadow:0 8px 18px rgba(46,168,79,.35);text-transform:uppercase}
+  .cta:hover{background:var(--green-dark)}
+  .cta .cart{margin-right:6px}
+
+  .trust{display:flex;flex-direction:column;gap:6px;align-items:center;margin-top:14px;
+    font-size:11.5px;color:var(--ink-soft);font-weight:600}
+  .trust span{display:inline-flex;align-items:center;gap:6px}
+  .check-ic{color:var(--green)}
+
+  /* section heading */
+  .shead{text-align:center;font-size:19px;font-weight:900;margin:0 0 22px;letter-spacing:.3px}
+  .shead .hl{color:var(--green)}
+  .eyebrow{text-align:center;font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--orange);margin:0 0 4px}
+
+  /* benefits grid */
+  .benefits{display:grid;grid-template-columns:1fr 1fr;gap:18px 14px}
+  .benefit{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .benefit .ic{width:46px;height:46px;border-radius:50%;background:var(--green-soft);display:flex;
+    align-items:center;justify-content:center;color:var(--green-dark);border:1px solid var(--green-line)}
+  .benefit p{margin:0;font-size:12px;font-weight:600;color:var(--ink-soft);line-height:1.35}
+
+  /* carousels */
+  .carousel{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
+  .carousel::-webkit-scrollbar{height:6px}
+  .carousel::-webkit-scrollbar-thumb{background:#d4d7db;border-radius:3px}
+  .ph-phone{flex:0 0 46%;aspect-ratio:9/16;scroll-snap-align:center;box-shadow:var(--shadow)}
+  .ph-review-food{flex:0 0 30%;aspect-ratio:1;scroll-snap-align:center}
+  .carousel-nav{display:flex;justify-content:flex-end;gap:8px;margin-bottom:10px}
+  .carousel-nav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--hairline);
+    background:#fff;color:var(--ink-soft);cursor:pointer;font-size:14px}
+
+  /* perfect-for list */
+  .perfect{background:var(--green-soft);border-radius:var(--radius)}
+  .perfect-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+  .perfect-list li{display:flex;gap:12px;font-size:13px;font-weight:600;color:var(--ink);line-height:1.4}
+  .perfect-list .tick{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--green);
+    color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;margin-top:1px}
+
+  /* bonus */
+  .bonus-head{font-size:19px;font-weight:900;margin:0 0 6px;letter-spacing:.3px}
+  .bonus-head .hl{color:var(--orange)}
+  .bonus-intro{font-size:12.5px;color:var(--ink-soft);margin:0 0 22px}
+  .bonus-list{display:flex;flex-direction:column;gap:16px}
+  .bonus{display:flex;gap:14px;border:1px solid var(--hairline);border-radius:var(--radius);padding:14px;
+    box-shadow:var(--shadow);position:relative;align-items:center}
+  .bonus-tag{position:absolute;top:-9px;left:14px;background:var(--orange);color:#fff;font-size:10px;
+    font-weight:800;letter-spacing:.5px;padding:3px 10px;border-radius:20px}
+  .ph-bonus{flex:0 0 78px;height:78px;border-radius:10px}
+  .bonus-body h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .bonus-body p{margin:0 0 6px;font-size:11.5px;color:var(--ink-soft);line-height:1.35}
+  .bonus-price .old{color:var(--price-old);text-decoration:line-through;font-size:11px;font-weight:700;margin-right:8px}
+  .bonus-price .free{color:var(--green-dark);font-size:11.5px;font-weight:900;letter-spacing:.3px}
+
+  /* offers */
+  .offers-intro{text-align:center;font-size:12.5px;color:var(--ink-soft);margin:0 auto 24px;max-width:36ch}
+  .offer{border:1px solid var(--hairline);border-radius:var(--radius);padding:22px 20px;margin-bottom:20px;
+    box-shadow:var(--shadow);position:relative}
+  .offer.featured{border:2px solid var(--green);box-shadow:0 10px 26px rgba(46,168,79,.22)}
+  .offer-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--green);
+    color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.6px;padding:5px 16px;border-radius:20px}
+  .offer .kicker{text-align:center;font-size:10.5px;font-weight:800;letter-spacing:1.5px;color:var(--orange);margin:2px 0 4px}
+  .offer h3{text-align:center;font-size:18px;font-weight:900;margin:0 0 16px}
+  .offer h3 .hl{color:var(--green)}
+  .offer-list{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:11px}
+  .offer-list li{display:flex;gap:9px;font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.35}
+  .offer-list .tick{color:var(--green);flex:0 0 auto;margin-top:1px}
+  .offer-list li.bonus-item .tick{color:var(--orange)}
+  .offer-price{text-align:center;margin-bottom:16px}
+  .offer-price .old{color:var(--price-old);text-decoration:line-through;font-size:12px;font-weight:700}
+  .offer-price .once{color:var(--ink-soft);font-size:11px;font-weight:700;letter-spacing:.5px}
+  .offer-price .now{font-size:34px;font-weight:900;color:var(--green-deep);line-height:1.1}
+  .offer .mini-trust{display:flex;justify-content:center;gap:16px;margin-top:12px;font-size:10.5px;
+    color:var(--ink-soft);font-weight:600}
+  .offer .mini-trust span{display:inline-flex;gap:5px;align-items:center}
+
+  /* guarantee dark */
+  .guarantee{background:var(--dark-bg);color:var(--dark-fg);text-align:center}
+  .guarantee .seal{width:62px;height:62px;border-radius:50%;border:2px solid var(--orange);color:var(--orange);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+  .guarantee .g1{color:var(--orange);font-size:13px;font-weight:800;letter-spacing:1px;margin:0 0 8px}
+  .guarantee .g2{font-size:17px;font-weight:900;margin:0 0 16px;color:#fff;text-wrap:balance}
+  .guarantee p{font-size:12.5px;color:var(--dark-soft);line-height:1.6;margin:0 auto 18px;max-width:40ch}
+  .guarantee .g3{font-size:11px;font-weight:800;letter-spacing:.8px;color:var(--dark-fg)}
+
+  /* reviews */
+  .rev-head{text-align:center;font-size:18px;font-weight:900;margin:0 0 6px;letter-spacing:.3px;text-wrap:balance}
+  .rev-head .hl{color:var(--orange)}
+  .rev-sub{text-align:center;font-size:12.5px;color:var(--ink-soft);margin:0 0 22px}
+  .rating{display:flex;gap:18px;align-items:center;margin-bottom:24px}
+  .rating .score{text-align:center}
+  .rating .score .num{font-size:40px;font-weight:900;line-height:1;color:var(--ink)}
+  .rating .score .stars{color:var(--star);font-size:14px;letter-spacing:1px;margin-top:4px}
+  .rating .score .count{font-size:10.5px;color:var(--muted);margin-top:4px}
+  .bars{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+  .bar-row{display:flex;align-items:center;gap:7px;font-size:10px;color:var(--muted)}
+  .bar-row .lab{width:10px;text-align:right}
+  .bar{flex:1;height:7px;background:#eceef0;border-radius:4px;overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--star);border-radius:4px}
+
+  .reviews{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .review{border:1px solid var(--hairline);border-radius:12px;padding:12px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:8px}
+  .rv-top{display:flex;gap:9px;align-items:center}
+  .rv-av{width:34px;height:34px;border-radius:50%;background:var(--green-soft);color:var(--green-dark);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex:0 0 auto}
+  .rv-name{font-size:12px;font-weight:800;line-height:1.1}
+  .rv-date{font-size:9.5px;color:var(--muted)}
+  .rv-stars{color:var(--star);font-size:11px;letter-spacing:1px}
+  .rv-text{font-size:11px;color:var(--ink-soft);line-height:1.45;margin:0}
+  .ph-rv-food{aspect-ratio:4/3;border-radius:8px}
+  .rv-foot{display:flex;gap:14px;font-size:10px;color:var(--muted);font-weight:600}
+
+  /* faq */
+  .faq-head{text-align:center;font-size:19px;font-weight:900;margin:0 0 22px;letter-spacing:.3px}
+  .faq{display:flex;flex-direction:column;gap:12px}
+  .faq details{border:1px solid var(--hairline);border-radius:12px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:15px 16px;
+    font-size:13px;font-weight:700;color:var(--ink)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .q{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--green-soft);
+    color:var(--green-dark);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900}
+  .faq summary .chev{margin-left:auto;transition:transform .2s;color:var(--muted)}
+  .faq details[open] summary .chev{transform:rotate(180deg)}
+  .faq .ans{padding:0 16px 16px 50px;font-size:12px;color:var(--ink-soft);line-height:1.55}
+
+  .final-note{text-align:center;font-size:12px;color:var(--ink-soft);margin:0 0 16px}
+
+  /* footer */
+  .foot{background:var(--dark-bg);color:var(--dark-soft);text-align:center;padding-block:30px}
+  .foot .fbrand{color:var(--orange);font-weight:900;font-size:15px;letter-spacing:.5px;margin:0 0 14px}
+  .foot p{font-size:10.5px;line-height:1.6;margin:0 auto 12px;max-width:42ch}
+  .foot .copy{font-size:10px;color:#6a6a6a}
+
+  @media (max-width:360px){
+    .benefits{gap:14px 10px}
+    .hero h1{font-size:21px}
+  }
+</style>
+
+<div class="page">
+
+  <!-- TOP BAR -->
+  <div class="topbar">Esta promoção acaba hoje — 06/11/2025</div>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <h1>150 ALMOÇOS FITNESS PRÁTICOS E ECONÔMICOS</h1>
+    <p class="sub">Seu Guia Completo para Secar Comendo Bem e Sem Abrir Mão do Sabor!</p>
+    <p class="lead">Mais de 150 receitas práticas, baratas e que fazem bem de verdade.</p>
+
+    <div class="placeholder ph-mockup">[PLACEHOLDER — MOCKUP LIVRO]</div>
+
+    <div class="price-block">
+      <div class="price-old">De R$ 97,00</div>
+      <div class="price-label">POR APENAS</div>
+      <div class="price-now">R$ 18,00</div>
+    </div>
+
+    <a class="cta" href="#"><span class="cart">🛒</span> QUERO OS 150 ALMOÇOS FITNESS</a>
+
+    <div class="trust">
+      <span><span class="check-ic">✔</span> ACESSO IMEDIATO &nbsp;·&nbsp; <span class="check-ic">✔</span> COMPRA 100% SEGURA</span>
+      <span><span class="check-ic">✔</span> 7 DIAS DE GARANTIA</span>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="wrap">
+    <h2 class="shead">Benefícios do <span class="hl">produto:</span></h2>
+    <div class="benefits">
+      <div class="benefit"><div class="ic">🍽️</div><p>150 Almoços sem cair na repetição</p></div>
+      <div class="benefit"><div class="ic">⏱️</div><p>Receitas rápidas para a sua rotina</p></div>
+      <div class="benefit"><div class="ic">💰</div><p>Ingredientes baratos e acessíveis</p></div>
+      <div class="benefit"><div class="ic">📋</div><p>Passo a passo simples e ilustrado</p></div>
+      <div class="benefit"><div class="ic">🔥</div><p>Calorias calculadas por porção</p></div>
+      <div class="benefit"><div class="ic">🥗</div><p>Comida de verdade com sabor</p></div>
+      <div class="benefit"><div class="ic">👨‍👩‍👧</div><p>Opções para toda a família</p></div>
+      <div class="benefit"><div class="ic">📱</div><p>Acesso no celular ou impresso</p></div>
+    </div>
+  </section>
+
+  <!-- RECIPES CAROUSEL -->
+  <section class="wrap">
+    <h2 class="shead">VEJA ALGUMAS RECEITAS<br><span class="hl">QUE VOCÊ RECEBE</span></h2>
+    <div class="carousel">
+      <div class="placeholder ph-phone">[PLACEHOLDER — PRINT RECEITA]</div>
+      <div class="placeholder ph-phone">[PLACEHOLDER — PRINT RECEITA]</div>
+      <div class="placeholder ph-phone">[PLACEHOLDER — PRINT RECEITA]</div>
+    </div>
+  </section>
+
+  <!-- RESULTS CAROUSEL -->
+  <section class="wrap">
+    <p class="eyebrow">RESULTADO DE VERDADE</p>
+    <h2 class="shead" style="margin-bottom:8px">QUEM JÁ PREPAROU,<br><span class="hl">APROVOU!</span></h2>
+    <p class="bonus-intro" style="text-align:center;margin-bottom:18px">Veja o que algumas alunas estão preparando com as receitas do guia.</p>
+    <div class="carousel-nav"><button aria-label="anterior">‹</button><button aria-label="próximo">›</button></div>
+    <div class="carousel">
+      <div class="placeholder ph-review-food">[PLACEHOLDER — FOTO]</div>
+      <div class="placeholder ph-review-food">[PLACEHOLDER — FOTO]</div>
+      <div class="placeholder ph-review-food">[PLACEHOLDER — FOTO]</div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:6px">
+    <a class="cta" href="#"><span class="cart">🛒</span> QUERO OS 150 ALMOÇOS</a>
+  </section>
+
+  <!-- PERFECT FOR -->
+  <section class="wrap">
+    <h2 class="shead">ESSE CARDÁPIO É <span class="hl">PERFEITO PARA VOCÊ QUE...</span></h2>
+    <div class="perfect wrap" style="padding-block:24px">
+      <ul class="perfect-list">
+        <li><span class="tick">✔</span> Tem uma rotina corrida e precisa de almoços rápidos, sem passar horas na cozinha</li>
+        <li><span class="tick">✔</span> Quer comer saudável sem cair na mesma comida sem graça todos os dias</li>
+        <li><span class="tick">✔</span> Busca economizar usando ingredientes simples de mercado e feira</li>
+        <li><span class="tick">✔</span> Não quer pesar cada garfada nem calcular calorias do zero</li>
+        <li><span class="tick">✔</span> Tem pouca prática e precisa de um passo a passo visual e fácil de seguir</li>
+        <li><span class="tick">✔</span> Quer servir refeições que a família inteira coma com prazer</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- BONUS -->
+  <section class="wrap">
+    <h2 class="bonus-head">VOCÊ LEVA 5 <span class="hl">BÔNUS</span> EXCLUSIVOS!</h2>
+    <p class="bonus-intro">Adquira hoje e garanta esses materiais de apoio essenciais sem pagar nada a mais.</p>
+    <div class="bonus-list">
+      <div class="bonus">
+        <span class="bonus-tag">BÔNUS 1</span>
+        <div class="placeholder ph-bonus">[IMG]</div>
+        <div class="bonus-body">
+          <h4>Guia de Lanches Saudáveis e Econômicos</h4>
+          <p>15 Opções Gostosas Prontas em 5 Minutos</p>
+          <div class="bonus-price"><span class="old">R$ 19,90</span><span class="free">✔ GRÁTIS HOJE</span></div>
+        </div>
+      </div>
+      <div class="bonus">
+        <span class="bonus-tag">BÔNUS 2</span>
+        <div class="placeholder ph-bonus">[IMG]</div>
+        <div class="bonus-body">
+          <h4>Planner Semanal Imprimível</h4>
+          <p>Como Preparar Tudo de Uma Vez e Sair Nunca em Correria no Resto dos Dias</p>
+          <div class="bonus-price"><span class="old">R$ 24,90</span><span class="free">✔ GRÁTIS HOJE</span></div>
+        </div>
+      </div>
+      <div class="bonus">
+        <span class="bonus-tag">BÔNUS 3</span>
+        <div class="placeholder ph-bonus">[IMG]</div>
+        <div class="bonus-body">
+          <h4>Lista Inteligente de Substituições</h4>
+          <p>Troca e Substitua Qualquer Ingrediente sem Perder o Sabor nem o Resultado</p>
+          <div class="bonus-price"><span class="old">R$ 14,90</span><span class="free">✔ GRÁTIS HOJE</span></div>
+        </div>
+      </div>
+      <div class="bonus">
+        <span class="bonus-tag">BÔNUS 4</span>
+        <div class="placeholder ph-bonus">[IMG]</div>
+        <div class="bonus-body">
+          <h4>Guia de Chás Anti-Inflamatórios</h4>
+          <p>Bebidas Poderosas para Desinchar, Acelerar o Metabolismo e Limpar o Organismo</p>
+          <div class="bonus-price"><span class="old">R$ 19,90</span><span class="free">✔ GRÁTIS HOJE</span></div>
+        </div>
+      </div>
+      <div class="bonus">
+        <span class="bonus-tag">BÔNUS 5</span>
+        <div class="placeholder ph-bonus">[IMG]</div>
+        <div class="bonus-body">
+          <h4>Guia de Jantares Leves para Desinchar Dormindo</h4>
+          <p>Receitas Leves que Desincham e Preparam Seu Corpo Enquanto Você Dorme</p>
+          <div class="bonus-price"><span class="old">R$ 19,90</span><span class="free">✔ GRÁTIS HOJE</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFERS -->
+  <section class="wrap">
+    <h2 class="shead" style="margin-bottom:6px">ESCOLHA A SUA <span class="hl">OFERTA</span></h2>
+    <p class="offers-intro">Selecione o plano ideal para a sua rotina e comece a sua transformação alimentar hoje mesmo!</p>
+
+    <div class="offer featured">
+      <span class="offer-badge">MAIS RECOMENDADO</span>
+      <div class="kicker">SUPER OFERTA</div>
+      <h3>150 Almoços Fitness <span class="hl">COMPLETO</span></h3>
+      <ul class="offer-list">
+        <li><span class="tick">✔</span> Livro Digital 150 Almoços Fitness</li>
+        <li><span class="tick">✔</span> Lista de Compras Inteligente</li>
+        <li><span class="tick">✔</span> Acesso Vitalício + Atualizações Gratuitas</li>
+        <li><span class="tick">✔</span> Entrega Imediata no E-mail + WhatsApp</li>
+        <li class="bonus-item"><span class="tick">🎁</span> Bônus 1 — Guia de Lanches Saudáveis e Econômicos</li>
+        <li class="bonus-item"><span class="tick">🎁</span> Bônus 2 — Planner Semanal Imprimível</li>
+        <li class="bonus-item"><span class="tick">🎁</span> Bônus 3 — Lista Inteligente de Substituições</li>
+        <li class="bonus-item"><span class="tick">🎁</span> Bônus 4 — Guia de Chás Anti-Inflamatórios</li>
+        <li class="bonus-item"><span class="tick">🎁</span> Bônus 5 — Guia de Jantares Leves para Desinchar Dormindo</li>
+      </ul>
+      <div class="offer-price">
+        <div><span class="old">De R$ 197,00</span> &nbsp; <span class="once">PAGAMENTO ÚNICO</span></div>
+        <div class="now">R$ 29,00</div>
+      </div>
+      <a class="cta" href="#"><span class="cart">🛒</span> COMPRAR AGORA</a>
+      <div class="mini-trust"><span>🔒 COMPRA SEGURA</span><span>⚡ ACESSO IMEDIATO</span></div>
+    </div>
+
+    <div class="offer">
+      <div class="kicker">OFERTA BÁSICA</div>
+      <h3>150 Almoços Fitness</h3>
+      <ul class="offer-list">
+        <li><span class="tick">✔</span> Livro Digital 150 Almoços Fitness</li>
+        <li><span class="tick">✔</span> Lista de Compras Inteligente</li>
+        <li><span class="tick">✔</span> Acesso Vitalício ao Material</li>
+        <li><span class="tick">✔</span> Entrega Imediata no E-mail + WhatsApp</li>
+      </ul>
+      <div class="offer-price">
+        <div><span class="old">De R$ 97,00</span> &nbsp; <span class="once">PAGAMENTO ÚNICO</span></div>
+        <div class="now">R$ 18,00</div>
+      </div>
+      <a class="cta" href="#"><span class="cart">🛒</span> COMPRAR AGORA</a>
+      <div class="mini-trust"><span>🔒 COMPRA SEGURA</span><span>⚡ ACESSO IMEDIATO</span></div>
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section class="guarantee wrap">
+    <div class="seal">🛡️</div>
+    <p class="g1">GARANTIA DE SATISFAÇÃO TOTAL</p>
+    <p class="g2">SEU RISCO É ZERO — 7 DIAS DE GARANTIA INCONDICIONAL</p>
+    <p>Temos tanta convicção da qualidade do nosso material que te damos 7 dias completos para experimentar todas as receitas. Se você não gostar do sabor de algum prato, não achar simples o preparo ou se arrepender por qualquer motivo, basta nos enviar um e-mail para receber 100% de reembolso.</p>
+    <p class="g3">SEM PERGUNTAS · SEM ENROLAÇÃO · SEM BUROCRACIA</p>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="wrap">
+    <h2 class="rev-head">3.500+ PESSOAS JÁ <span class="hl">TRANSFORMARAM</span> SUA ROTINA NA COZINHA</h2>
+    <p class="rev-sub">Veja o que quem já comprou está falando:</p>
+
+    <div class="rating">
+      <div class="score">
+        <div class="num">4.9</div>
+        <div class="stars">★★★★★</div>
+        <div class="count">3.546 avaliações</div>
+      </div>
+      <div class="bars">
+        <div class="bar-row"><span class="lab">5</span><span class="bar"><i style="width:94%"></i></span></div>
+        <div class="bar-row"><span class="lab">4</span><span class="bar"><i style="width:4%"></i></span></div>
+        <div class="bar-row"><span class="lab">3</span><span class="bar"><i style="width:1%"></i></span></div>
+        <div class="bar-row"><span class="lab">2</span><span class="bar"><i style="width:0%"></i></span></div>
+        <div class="bar-row"><span class="lab">1</span><span class="bar"><i style="width:1%"></i></span></div>
+      </div>
+    </div>
+
+    <div class="reviews">
+      <div class="review">
+        <div class="rv-top"><div class="rv-av">A</div><div><div class="rv-name">Ana M.</div><div class="rv-date">14 de out. de 2025</div></div></div>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-text">Eu só faço fingir com que gostava. Depois que peguei o livro, descobri que dá pra fazer barato, rápido e gostoso. Virou meu favorito!</p>
+        <div class="placeholder ph-rv-food">[PLACEHOLDER — FOTO]</div>
+        <div class="rv-foot"><span>👍 Curtir</span><span>💬 Comentar</span></div>
+      </div>
+      <div class="review">
+        <div class="rv-top"><div class="rv-av">J</div><div><div class="rv-name">Juliana S.</div><div class="rv-date">9 de out. de 2025</div></div></div>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-text">Comecei por causa das receitas rápidas e já fiz vários pratos. Meus filhos adoraram! E a rotina de frango. Tudo fica pronto e gostoso em menos de 30 minutos.</p>
+        <div class="placeholder ph-rv-food">[PLACEHOLDER — FOTO]</div>
+        <div class="rv-foot"><span>👍 Curtir</span><span>💬 Comentar</span></div>
+      </div>
+      <div class="review">
+        <div class="rv-top"><div class="rv-av">C</div><div><div class="rv-name">Camila F.</div><div class="rv-date">2 de out. de 2025</div></div></div>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-text">Minhas marmitas estavam um fiasco. Agro com guias fiz o mesmo. Agora uso a guia todo dia da semana e salvaram minha rotina corrida e ainda emagreci 3kg.</p>
+        <div class="placeholder ph-rv-food">[PLACEHOLDER — FOTO]</div>
+        <div class="rv-foot"><span>👍 Curtir</span><span>💬 Comentar</span></div>
+      </div>
+      <div class="review">
+        <div class="rv-top"><div class="rv-av">P</div><div><div class="rv-name">Patrícia R.</div><div class="rv-date">28 de set. de 2025</div></div></div>
+        <div class="rv-stars">★★★★★</div>
+        <p class="rv-text">Minha filha adora e o guia me ajudou muito. É gostei faz quitanas de carne, prato de frigideira e massinha com legumes. Fico uma delícia e a comida vira festa!</p>
+        <div class="placeholder ph-rv-food">[PLACEHOLDER — FOTO]</div>
+        <div class="rv-foot"><span>👍 Curtir</span><span>💬 Comentar</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:6px">
+    <a class="cta" href="#"><span class="cart">🛒</span> QUERO OS ALMOÇOS!</a>
+  </section>
+
+  <!-- FAQ -->
+  <section class="wrap">
+    <h2 class="faq-head">PERGUNTAS FREQUENTES (FAQ)</h2>
+    <div class="faq">
+      <details>
+        <summary><span class="q">?</span> Como vou receber o material? <span class="chev">▾</span></summary>
+        <div class="ans">Logo após a confirmação do pagamento, você recebe o acesso imediato por e-mail e WhatsApp, podendo abrir o material no celular ou no computador.</div>
+      </details>
+      <details>
+        <summary><span class="q">?</span> Não sei cozinhar muito bem... esse livro digital serve para mim? <span class="chev">▾</span></summary>
+        <div class="ans">Sim! Todas as receitas têm passo a passo simples e ilustrado, pensadas para quem tem pouca prática na cozinha.</div>
+      </details>
+      <details>
+        <summary><span class="q">?</span> Posso acessar o conteúdo pelo celular? <span class="chev">▾</span></summary>
+        <div class="ans">Pode sim. O material é 100% digital e abre em qualquer dispositivo: celular, tablet ou computador. Também pode ser impresso.</div>
+      </details>
+      <details>
+        <summary><span class="q">?</span> E se eu não gostar? Tem alguma garantia? <span class="chev">▾</span></summary>
+        <div class="ans">Você tem 7 dias de garantia incondicional. Se não gostar por qualquer motivo, basta enviar um e-mail e devolvemos 100% do valor.</div>
+      </details>
+      <details>
+        <summary><span class="q">?</span> Os ingredientes das receitas são caros? <span class="chev">▾</span></summary>
+        <div class="ans">Não. Todas as receitas usam ingredientes simples, baratos e fáceis de encontrar em qualquer mercado ou feira.</div>
+      </details>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:6px">
+    <p class="final-note">Ainda tem dúvidas? Garanta o seu agora:</p>
+    <a class="cta" href="#"><span class="cart">🛒</span> QUERO OS 150 ALMOÇOS FITNESS</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot wrap">
+    <p class="fbrand">150 ALMOÇOS FITNESS</p>
+    <p>As informações disponibilizadas neste site são apenas de caráter informativo e de acompanhamento médico ou nutricional personalizado. Os resultados podem variar de pessoa para pessoa.</p>
+    <p class="copy">© 2025 Todos os direitos reservados.</p>
+  </footer>
+
+</div>
+
+<script>
+  // simple carousel arrow nav
+  document.querySelectorAll('.carousel-nav').forEach(function(nav){
+    var car = nav.nextElementSibling;
+    var btns = nav.querySelectorAll('button');
+    btns[0].addEventListener('click',function(){ car.scrollBy({left:-car.clientWidth*0.6,behavior:'smooth'}); });
+    btns[1].addEventListener('click',function(){ car.scrollBy({left: car.clientWidth*0.6,behavior:'smooth'}); });
+  });
+</script>
