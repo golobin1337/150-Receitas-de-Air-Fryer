@@ -20,6 +20,42 @@ document.querySelectorAll('.carousel-nav').forEach(function (nav) {
   });
 });
 
+// ---- Upsell popup (escolha entre Completo com desconto e Básico) ----
+var upsell = document.getElementById('upsell');
+var upsellClose = document.getElementById('upsellClose');
+
+function openUpsell(e) {
+  if (e) e.preventDefault();
+  if (!upsell) return;
+  upsell.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeUpsell() {
+  if (!upsell) return;
+  upsell.hidden = true;
+  document.body.style.overflow = '';
+}
+
+if (upsell) {
+  document.querySelectorAll('.js-open-upsell').forEach(function (btn) {
+    btn.addEventListener('click', openUpsell);
+  });
+  upsellClose.addEventListener('click', closeUpsell);
+  upsell.addEventListener('click', function (e) {
+    if (e.target === upsell) closeUpsell();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !upsell.hidden) closeUpsell();
+  });
+  // "Não, quero só o Plano Básico" — se o link ainda não foi definido, apenas fecha
+  var basicLink = document.getElementById('upsellBasic');
+  if (basicLink) {
+    basicLink.addEventListener('click', function (e) {
+      if (basicLink.getAttribute('href') === '#') { e.preventDefault(); closeUpsell(); }
+    });
+  }
+}
+
 // ---- Carousels: zoom hint + "arraste para ver mais" + lightbox ----
 var lightbox = document.getElementById('lightbox');
 var lbStage = document.getElementById('lbStage');
